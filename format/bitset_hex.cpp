@@ -1,10 +1,8 @@
 #include <bitset>
-#include <string>
 #include <sstream>
-#include <ios>
-#include <iostream>
 #include <cstdint>
 #include <stdexcept>
+#include <string>
 using namespace std;
 
 int _hexnum(char);

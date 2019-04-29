@@ -20,12 +20,40 @@ void bitset_chunk8(bitset<L> B, uint8_t *A, int n, int o = 0) {
 }
 
 template <int L>
+void bitset_chunk32(bitset<L> B, uint32_t *A, int n, int o = 0) {
+	if (n*32 + o*32 > L) {
+		throw invalid_argument("You cannot copy more chunks than exist in the bitset.");
+	}
+	for (int a = 0; a < n; a++) {
+		A[a] = 0;
+		for (int b = 0; b < 32; b++) {
+			if (B[32*a + b + 32*o]) {
+				A[a] += 0x1 << b;
+			}
+		}
+	}
+}
+
+template <int L>
 bitset<L> bitset_dechunk8(uint8_t *A) {
 	bitset<L> B (0);
 	for (int a = 0; a < L/8; a++) {
 		for (int b = 0; b < 8; b++) {
 			if (A[a] & (0x1 << b)) {
 				B.set(8*a + b);
+			}
+		}
+	}
+	return B;
+}
+
+template <int L>
+bitset<L> bitset_dechunk32(uint32_t *A) {
+	bitset<L> B (0);
+	for (int a = 0; a < L/32; a++) {
+		for (int b = 0; b < 32; b++) {
+			if (A[a] & (0x1 << b)) {
+				B.set(32*a + b);
 			}
 		}
 	}
