@@ -1,4 +1,3 @@
 # ECE5397project
-Basic command-line public-key encryption utility using RSA for key exchange
-with option of 3DES or AES for message encryption, using ECB, CBC, or ...the stream one
-### Don't use this there are better encryption utilities out there
+Implementations of the AES and 3DES ciphers, and OFB and CBC modes of operation,
+for use in a class project. (Report comparing running times is also present).

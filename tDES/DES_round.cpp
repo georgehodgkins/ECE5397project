@@ -29,7 +29,7 @@ void DESFeistel(uint32_t& X, uint8_t *roundKey) {
 
 uint8_t* DESExpand(uint32_t X, uint8_t *EX) {
 	for (int a = 0; a < 6; a++) {
-		for (int b = 0; b < 8; b++) {
+		for (int b = 0; b < 8; b++)
 			if (X & (1 << DESExpandMapping[a*8 + b])) {
 				EX[a] |= (1 << b);
 			}
@@ -60,7 +60,7 @@ void DESFeistelPerm(uint32_t& X) {
 	}
 }
 
-void DESRoundKeyGen(std::bitset<64> K, uint8_t **RK) {
+void DESRoundKeyGen(std::bitset<64> K, uint8_t (&RK)[16][6]) {
 	std::bitset<28> K_R (0);
 	std::bitset<28> K_L (0);
 	for (int n = 0; n < 28; n++) {
